@@ -1,0 +1,258 @@
+/*Body*/
+body{
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+}
+/*
+header{
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+/* Navigation bar styles */
+.nav-wrapper {
+  background-color: #fff;
+  height: auto;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  font-size: small;
+  border-bottom: 1px solid #fff;/*
+  box-shadow: 1px #000;*/
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #222;
+}
+
+/* Logo styles */
+.nav-logo{
+  max-width: 10%;
+}
+
+.nav-logo img  {
+  max-width: 90px;
+  height: auto;
+}
+/*Profile img*/
+.nav-sign img  {
+  max-width: 80px;
+  height: 80px;
+}
+/* Navigation links styles */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.nav-links a {
+  display: block;
+  padding: 0 20px;
+  line-height: 80px;
+  text-decoration: none;
+}
+
+.nav-sign{
+  font-weight: bold;
+  margin-left: 0;
+  display: flex;
+}
+
+.nav-links a:hover {
+  color: #444;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+/* Navigation links styles for smaller screens */
+@media only screen and (max-width: 768px) {
+  /* Logo styles */
+  .nav-logo{
+    max-width: 10%;
+  }
+
+  .nav-logo img  {
+    max-width: 70px;
+    height: auto;
+  }
+  .nav-wrapper {
+    justify-content: space-between;
+    align-items: left        ;
+  }
+    
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+    
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: #444;
+    padding: 20px;
+  }
+  
+  .nav-links.show {
+    display: flex;
+  }
+  
+  .nav-links a {
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+  
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+   }
+  /*Footer*/
+  footer{
+    font-size: small;
+    text-align: center;
+  }
+  
+ /* Top Footer */
+ .top-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+/* Lower Footer */
+.lower-footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  justify-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #666;
+}
+
+.lower-footer li {
+  text-align: left;
+}
+
+}
+
+/*contact-info*/
+#contact-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #666;
+  color: white;
+  font-size: 11px;
+  top: 0;
+  padding: 5px;
+}
+
+#contact-info a {
+  margin-left: 10px;
+}
+
+#contact-info span {
+  margin-right: 10px;
+}
+
+/* Footer styles */
+footer {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  font-size: small;
+  }
+  
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+  
+/* Social media links */
+.socials, .more, .cont {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+  
+.socials li, .more li, .cont li {
+  margin-bottom: 10px;
+}
+  
+.socials a, .more a, .cont a {
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+  
+.socials a:hover, .more a:hover, .cont a:hover {
+  color: lightblue;
+}
+  
+/* Top footer styles */
+.top-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+/* Lower footer styles */
+.lower-footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  justify-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #666;
+}
+
+.lower-footer li {
+  text-align: left;
+}
