@@ -1,5 +1,7 @@
-![White logo - no background](https://user-images.githubusercontent.com/71008423/234313803-3264420a-ed19-4984-a9d5-2366b54b59f5.svg)
-d51.png)
+<a href="https://gachezra.github.io/EventKick/">
+<img src="https://user-images.githubusercontent.com/71008423/234313803-3264420a-ed19-4984-a9d5-2366b54b59f5.svg" alt="White Logo" width="400" height="400"/>
+</a>
+<hr>
 
 # EventKick
 A new project based on an [old one](github.com/gachezra/event)
