@@ -12,3 +12,7 @@ Well, the following:
 2. Use of [Bootstrap](https://www.getbootstrap.com) instead of Vanilla CSS.
 3. Adding more features as we go. 
 4. Hopefully I'll find a worthy partner to assist me in this journey.
+
+# One more thing
+
+<img src="https://media.giphy.com/media/CXnj3jCwvETngjy11B/giphy-downsized-large.gif" width="100%"/>
