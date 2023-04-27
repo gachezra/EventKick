@@ -15,4 +15,4 @@ Well, the following:
 
 # One more thing
 
-<img src="https://media.giphy.com/media/CXnj3jCwvETngjy11B/giphy-downsized-large.gif" width="100%"/>
+<img src="https://media.giphy.com/media/CXnj3jCwvETngjy11B/giphy-downsized-large.gif" width="400"/>
