@@ -13,6 +13,9 @@ Well, the following:
 3. Adding more features as we go. 
 4. Hopefully I'll find a worthy partner to assist me in this journey.
 
+# Experiment Deploy
+
+I will be changing the serverside language to PHP due to unavoidable circumstances. I will revert to Node and React once I get a more powerufl PC to host the site myself.
 # One more thing
 
-<img src="https://media.giphy.com/media/CXnj3jCwvETngjy11B/giphy-downsized-large.gif" width="400"/>
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGJ5NzI0eXphY3BpY3M2N3psYjMxaXZoMjgwb250YTdrZDllczN0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CXnj3jCwvETngjy11B/giphy-downsized-large.gif" width="400"/>
