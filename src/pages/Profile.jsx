@@ -35,8 +35,9 @@ const Profile = () => {
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY));
+    const avatarSet = localStorage.getItem('isAvatarImageSet');
     if (currentUser) {
-      if (!currentUser.isAvatarImageSet) {
+      if (!avatarSet) {
         navigate("/setAvatar");
       } else {
         fetchUserDetails(currentUser._id);
@@ -70,12 +71,12 @@ const Profile = () => {
   };
 
   const fetchUserDetails = async (userId) => {
-    const user = await axios.get(`${getUserDetailsRoute}/${userId}`, {
+    const res = await axios.get(`${getUserDetailsRoute}/${userId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     });
-    setUser(user.data.user);
+    setUser(res.data.user);
   }
 
   const fetchUserEvents = async (userId) => {

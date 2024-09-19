@@ -342,6 +342,15 @@ const EventDetails = () => {
                 <strong>Ticket Price: </strong>
                 <span>{event.isPaid ? `Ksh.${event.ticketPrice}` : 'Free'}</span>
               </div>
+              {event.isPaid && (
+                <input
+                  type="number"
+                  className="w-full p-3 mb-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
+                  value={numOfTickets}
+                  onChange={(e) => setNumOfTickets(e.target.value)}
+                  min="1"
+                />
+              )}
               <button
                 onClick={handleRegister}
                 disabled={event.registeredUsers.includes(currentUser?._id)}
@@ -349,7 +358,7 @@ const EventDetails = () => {
               >
                 {event.registeredUsers.includes(currentUser?._id)
                   ? 'Already Registered'
-                  : 'Register for Event'}
+                  : 'Get Ticket'}
               </button>
             </div>
           </div>
@@ -362,7 +371,7 @@ const EventDetails = () => {
                 <PaymentPage
                   eventId={event._id}
                   name={event.title}
-                  amount={selectedEventPrice}
+                  amount={selectedEventPrice * numOfTickets}
                   onPaymentSuccess={handlePaymentSuccess}
                 />
                 <button
@@ -380,65 +389,69 @@ const EventDetails = () => {
           </div>
         </div>
 
-        <div className="md:w-1/2 mx-auto">
-          <ForumPreview 
-            eventId={id} 
-            registeredUsers={event.registeredUsers} 
-            eventDate={event.date}
-          />
+        <div className='flex flex-col md:flex-row'>
+          <div className="md:w-1/2 mx-auto md:mr-4">
+            <ForumPreview 
+              eventId={id} 
+              registeredUsers={event.registeredUsers} 
+              eventDate={event.date}
+            />
 
-          {currentUser && event.registeredUsers.includes(currentUser._id) ? (
-            <Link to={`/forums/${id}`} className="block mt-4 text-indigo-600 hover:text-indigo-800">
-              View Available Forums
-            </Link>
-          ) : (
-            null
-          )}
-        </div>
+            {currentUser && event.registeredUsers.includes(currentUser._id) ? (
+              <Link to={`/forums/${id}`} className="block mt-4 text-indigo-600 hover:text-indigo-800">
+                View Available Forums
+              </Link>
+            ) : (
+              null
+            )}
+          </div>
 
-        <div className="bg-[#1e1e36] p-6 mt-3 md:w-1/2 mx-auto rounded-md shadow-md">
-          <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-          {Array.isArray(reviews) && reviews.length > 0 ? (
-            reviews.map((review) => (
-              <Review
-                key={review._id}
-                review={review}
-                currentUser={currentUser}
-                onDelete={handleDeleteReview}
-                onEdit={handleEditReview}
-              />
-            ))
-          ) : (
-            <p className="text-gray-400">No reviews yet. Be the first to review!</p>
-          )}
-          {currentUser ? (
-            <div className="mt-4">
-              <StarRating
-                rating={newReviewRating}
-                onRatingChange={setNewReviewRating}
-              />
-              <textarea
-                className="w-full p-2 bg-transparent border-b border-gray-300 text-white focus:outline-none"
-                placeholder="Add a review..."
-                value={newReview}
-                onChange={(e) => setNewReview(e.target.value)}
-              />
-              <div className="flex items-center mt-2">
-                <button
-                  onClick={handleAddReview}
-                  className="rounded-full border-2 border-indigo-600 px-6 pb-[6px] pt-2 ml-2 font-medium leading-normal text-indigo-600 transition duration-150 ease-in-out hover:border-indigo-500 hover:bg-indigo-100 hover:bg-opacity-10 hover:text-indigo-500 focus:border-indigo-500 focus:text-indigo-500 focus:outline-none focus:ring-0 active:border-indigo-700 active:text-indigo-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                >
-                  Add Review
-                </button>
-              </div>
+          <div className='md:w-1/2 w-full mx-auto'>
+            <div className="bg-[#1e1e36] p-6 mt-3 mx-auto rounded-md shadow-md">
+              <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+              {Array.isArray(reviews) && reviews.length > 0 ? (
+                reviews.map((review) => (
+                  <Review
+                    key={review._id}
+                    review={review}
+                    currentUser={currentUser}
+                    onDelete={handleDeleteReview}
+                    onEdit={handleEditReview}
+                  />
+                ))
+              ) : (
+                <p className="text-gray-400">No reviews yet. Be the first to review!</p>
+              )}
+              {currentUser ? (
+                <div className="mt-4">
+                  <StarRating
+                    rating={newReviewRating}
+                    onRatingChange={setNewReviewRating}
+                  />
+                  <textarea
+                    className="w-full p-2 bg-transparent border-b border-gray-300 text-white focus:outline-none"
+                    placeholder="Add a review..."
+                    value={newReview}
+                    onChange={(e) => setNewReview(e.target.value)}
+                  />
+                  <div className="flex items-center mt-2">
+                    <button
+                      onClick={handleAddReview}
+                      className="rounded-full border-2 border-indigo-600 px-6 pb-[6px] pt-2 ml-2 font-medium leading-normal text-indigo-600 transition duration-150 ease-in-out hover:border-indigo-500 hover:bg-indigo-100 hover:bg-opacity-10 hover:text-indigo-500 focus:border-indigo-500 focus:text-indigo-500 focus:outline-none focus:ring-0 active:border-indigo-700 active:text-indigo-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                    >
+                      Add Review
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <p className="mt-4 text-gray-400">You must be logged in to post a review.</p>
+              )}
+              <ToastContainer/>
             </div>
-          ) : (
-            <p className="mt-4 text-gray-400">You must be logged in to post a review.</p>
-          )}
-          <ToastContainer/>
+          </div>
         </div>
 
-        <div className="bg-[#1e1e36] p-6 mt-3 md:w-1/2 mx-auto rounded-md shadow-md">
+        <div className="bg-[#1e1e36] p-6 mt-3 mx-auto rounded-md shadow-md">
           <h2 className="text-2xl font-bold mb-4">Comments</h2>
           {Array.isArray(comments) && comments.length > 0 ? (
             comments.map((comment) => (
