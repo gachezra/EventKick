@@ -30,6 +30,7 @@ const EventDetails = () => {
   const [showPaymentOverlay, setShowPaymentOverlay] = useState(false);
   const [selectedEventPrice, setSelectedEventPrice] = useState(0);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
+  const [numOfTickets, setNumOfTickets] = useState(1);
   const currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) || null;
   const token = localStorage.getItem('token');
 
@@ -74,7 +75,7 @@ const EventDetails = () => {
     }
 
     if (event.isPaid) {
-      const confirmed = window.confirm(`This is a paid event. The ticket price is Ksh.${event.ticketPrice}. Do you want to proceed to payment?`);
+      const confirmed = window.confirm(`This is a paid event. The ticket price is Ksh.${event.ticketPrice}. Do you wish to proceed to pay for ${numOfTickets} tickets?`);
       if (!confirmed) {
         return;
       }
@@ -86,7 +87,9 @@ const EventDetails = () => {
     try {
       const response = await axios.post(
         `${registerEventRoute}/${id}`,
-        { userId: currentUser._id },
+        { userId: currentUser._id,
+          tickets: numOfTickets
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`
