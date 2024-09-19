@@ -126,7 +126,7 @@ const Profile = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#131324] text-white">
       <Helmet>
-        <title>Profile - {user.username}</title>
+        <title>Profile</title>
         <meta name='description' content='View your profile along with your tickets, transaction and posted events for event planners.' />
         <link rel='canonical' href='/profile' />
       </Helmet>
