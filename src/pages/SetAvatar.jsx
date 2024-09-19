@@ -50,15 +50,15 @@ const SetAvatar = () => {
         );
 
         if (data.isSet) {
-          user.isAvatarImageSet = true;
           user.avatarImage = data.image;
           localStorage.setItem(
             process.env.REACT_APP_LOCALHOST_KEY,
             JSON.stringify(user)
           );
+          localStorage.setItem('isAvatarImageSet', 'true');
           navigate("/profile");
         } else {
-          toast.error("Avatar not setting. Please try again.", toastOptions);
+          toast.error("Avatar not set. Please try again.", toastOptions);
         }
       } catch (error) {
         console.error("Error setting profile picture:", error);
