@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://event-client-gamma.vercel.app/</loc>
+    <loc>https://eventkick.ke/</loc>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/register</loc>
+    <loc>https://eventkick.ke/register</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/login</loc>
+    <loc>https://eventkick.ke/login</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/setAvatar</loc>
+    <loc>https://eventkick.ke/setAvatar</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/events</loc>
+    <loc>https://eventkick.ke/events</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/plan</loc>
+    <loc>https://eventkick.ke/plan</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/contact</loc>
+    <loc>https://eventkick.ke/contact</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/profile</loc>
+    <loc>https://eventkick.ke/profile</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/admin</loc>
+    <loc>https://eventkick.ke/admin</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/about</loc>
+    <loc>https://eventkick.ke/about</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/forgot-password</loc>
+    <loc>https://eventkick.ke/forgot-password</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/verify-email/{token}</loc>
+    <loc>https://eventkick.ke/verify-email/{token}</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/reset-password/{token}</loc>
+    <loc>https://eventkick.ke/reset-password/{token}</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/forums/{eventId}</loc>
+    <loc>https://eventkick.ke/forums/{eventId}</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/forum/{threadId}</loc>
+    <loc>https://eventkick.ke/forum/{threadId}</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/chat</loc>
+    <loc>https://eventkick.ke/chat</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/events/{id}</loc>
+    <loc>https://eventkick.ke/events/{id}</loc>
   </url>
   <url>
-    <loc>https://event-client-gamma.vercel.app/edit-event/{id}</loc>
+    <loc>https://eventkick.ke/edit-event/{id}</loc>
   </url>
 </urlset>
