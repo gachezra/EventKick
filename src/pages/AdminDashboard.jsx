@@ -11,8 +11,11 @@ const AdminDashboard = () => {
   const [approvedEvents, setApprovedEvents] = useState([]);
   const [pendingEvents, setPendingEvents] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
   const currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY));
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const checkStatus = async () => {
@@ -21,47 +24,51 @@ const AdminDashboard = () => {
           navigate('/');
         } else {
           const userId = currentUser._id;
-          const user = await axios.get(`${getUserDetailsRoute}/${userId}`, {
+          const userResponse = await axios.get(`${getUserDetailsRoute}/${userId}`, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`
+              Authorization: `Bearer ${token}`
             }
-          })
-      
-          if (user.data.role !== 'admin') {
-            navigate('/')
+          });
+
+          const user = userResponse.data.user;
+
+          if (user.role !== 'admin') {
+            navigate('/');
+          } else {
+            // Only fetch events if the user is an admin
+            fetchEvents();
           }
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
+        setError("Error checking user status");
       }
-    }
+    };
+
     checkStatus();
-    fetchEvents();
-  }, [navigate, currentUser]);
+  }, []);
 
-  const [loading, setLoading] = useState(true);
-
-    const fetchEvents = async () => {
+  const fetchEvents = async () => {
     setLoading(true);
     try {
-        const allEventsResponse = await axios.get(allEventsRoute);
-        const allEvents = allEventsResponse.data;
+      const allEventsResponse = await axios.get(allEventsRoute);
+      const allEvents = allEventsResponse.data;
 
-        setAllEvents(allEvents);
-        setApprovedEvents(allEvents.filter(event => event.status === 'approved'));
-        setPendingEvents(allEvents.filter(event => event.status === 'pending'));
+      setAllEvents(allEvents);
+      setApprovedEvents(allEvents.filter(event => event.status === 'approved'));
+      setPendingEvents(allEvents.filter(event => event.status === 'pending'));
     } catch (err) {
-        setError("Failed to fetch events");
+      setError("Failed to fetch events");
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-    };
+  };
 
   const handleApprove = async (eventId) => {
     try {
-      await axios.put(`${approveEventRoute}/${eventId}`,{},{
+      await axios.put(`${approveEventRoute}/${eventId}`, {}, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${token}`
         }
       });
       fetchEvents();
@@ -72,10 +79,10 @@ const AdminDashboard = () => {
 
   const handleDisapprove = async (eventId) => {
     try {
-      await axios.put(`${disapproveEventRoute}/${eventId}`,{},{
+      await axios.put(`${disapproveEventRoute}/${eventId}`, {}, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
       fetchEvents();
     } catch (err) {
@@ -87,8 +94,8 @@ const AdminDashboard = () => {
     try {
       await axios.delete(`${deleteEventRoute}/${eventId}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
       fetchEvents();
     } catch (err) {
