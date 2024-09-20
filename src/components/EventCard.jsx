@@ -27,7 +27,7 @@ const EventCard = ({ event, isProfilePage, onEdit, onDelete }) => {
             </div>
             <div className="mb-2">
               <p className="text-green-200 p-2 rounded">
-                <strong>Location:</strong> {event.location}
+                <strong>Venue:</strong> {event.location}
               </p>
             </div>
             <div className="mb-2">

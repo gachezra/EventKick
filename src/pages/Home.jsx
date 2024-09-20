@@ -19,16 +19,37 @@ const Home = () => {
         const [allEventsResponse, popularEventsResponse, upcomingEventsResponse] = await Promise.all([
           axios.get(getApprovedEventsRoute),
           axios.get(popularEventsRoute),
-          axios.get(upcomingEventsRoute)
+          axios.get(upcomingEventsRoute),
         ]);
-        setEvents(allEventsResponse.data.slice(0, 10));
-        setPopularEvents(popularEventsResponse.data);
-        setUpcomingEvents(upcomingEventsResponse.data);
+    
+        const currentDate = new Date();
+    
+        // Filter and sort all events by date, removing older events
+        const filteredEvents = allEventsResponse.data
+          .filter(event => new Date(event.date) >= currentDate)  // Only include events with a future date
+          .sort((a, b) => new Date(a.date) - new Date(b.date));  // Sort by date (ascending)
+    
+        // Slice the first 10 events after filtering and sorting
+        setEvents(filteredEvents.slice(0, 10));
+    
+        // Assuming you want similar filtering for popular and upcoming events:
+        const filteredPopularEvents = popularEventsResponse.data
+          .filter(event => new Date(event.date) >= currentDate)
+          .sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+        const filteredUpcomingEvents = upcomingEventsResponse.data
+          .filter(event => new Date(event.date) >= currentDate)
+          .sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+        // Update state
+        setPopularEvents(filteredPopularEvents);
+        setUpcomingEvents(filteredUpcomingEvents);
       } catch (err) {
         setError(err.message);
         console.error("Error fetching events:", err);
       }
     };
+    
     fetchEvents();
   }, []);
 
@@ -51,10 +72,10 @@ const Home = () => {
               <p>Great news! You can now pay for your tickets using <span className="underline">Mpesa</span>. Get your tickets quickly and easily!</p>
             </div> */}
             <section className="my-12 text-center">
-              <h1 className="text-2xl font-extrabold">Welcome to EventKick!</h1>
+              <h1 className="text-xl font-extrabold">Welcome to EventKick!</h1>
               <hr className="w-[20%] mx-auto mb-4"/>
               <p className="text-xl mb-6 max-w-3xl mx-auto">
-                Your one-stop platform for discovering the best events around you. From electrifying concerts to insightful conferences, and everything in between—explore, enjoy, and make memories that last!
+                Your one-stop platform for discovering the best events around you. Want somewhere to go, we got you!
               </p>
             </section>
             <section className="my-12">

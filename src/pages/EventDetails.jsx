@@ -31,6 +31,7 @@ const EventDetails = () => {
   const [selectedEventPrice, setSelectedEventPrice] = useState(0);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
   const [numOfTickets, setNumOfTickets] = useState(1);
+  const [eventLocation, setEventLocation] = useState([]);
   const currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) || null;
   const token = localStorage.getItem('token');
 
@@ -45,6 +46,9 @@ const EventDetails = () => {
         } else {
           setComments([]);
         }
+        console.log(response.data)
+      
+        setEventLocation([response.data.latitude,response.data.longitude]);
 
         const reviewsResponse = await axios.get(`${getReviewsRoute}/${id}`);
         if (Array.isArray(reviewsResponse.data.reviews)) {
@@ -277,6 +281,10 @@ const EventDetails = () => {
     }
   };
 
+  console.log(`Event coordinates: ${eventLocation}`)
+
+  const googleMapsLink = `https://www.google.com/maps?q=${encodeURIComponent(eventLocation)}`;
+
   if (error) {
     toast.error('Page load error:', error);
   }
@@ -337,10 +345,18 @@ const EventDetails = () => {
                 <strong>Date & Time: </strong>
                 <span>{new Date(event.date).toLocaleString()}</span>
               </div>
-              <div className="mb-4">
+
+              <div className="mb-2">
                 <strong>Venue: </strong>
                 <span>{event.location}</span>
               </div>
+
+              <div className="mb-4">
+                <a href={googleMapsLink} target="_blank" rel="noopener noreferrer" className="mt-2 text-indigo-600 hover:text-indigo-800">
+                  View Location on Google Maps
+                </a>
+              </div>
+
               <div className="mb-4">
                 <strong>Ticket Price: </strong>
                 <span>{event.isPaid ? `Ksh.${event.ticketPrice}` : 'Free'}</span>

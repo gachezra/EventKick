@@ -18,6 +18,8 @@ const Plan = () => {
   const [isPaid, setIsPaid] = useState(false);
   const [ticketPrice, setTicketPrice] = useState('');
   const [error, setError] = useState('');
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [fileName, setFileName] = useState('Choose an image');
@@ -29,6 +31,12 @@ const Plan = () => {
       setImage(file);
       setImagePreview(URL.createObjectURL(file));
     }
+  };
+
+  const handleCoordinatesChange = (coordinates) => {
+    setLatitude(coordinates.lat);
+    setLongitude(coordinates.lon);
+    console.log('Coordinates: ', coordinates.lat, coordinates.lon)
   };
 
   const handleSubmit = async (e) => {
@@ -59,6 +67,8 @@ const Plan = () => {
         description,
         date: `${date}T${time}`,
         location,
+        latitude,
+        longitude,
         user: userId,
         image: imageUrl,
         isPaid,
@@ -223,7 +233,7 @@ const Plan = () => {
             </div>
           )}
           <div className="mb-4">
-            <label htmlFor="location" className="block text-sm font-medium mb-2">Location</label>
+            <label htmlFor="location" className="block text-sm font-medium mb-2">Location (Precice Location)</label>
             <input
               type="text"
               id="location"
@@ -233,7 +243,10 @@ const Plan = () => {
               required
             />
           </div>
-          <Map location={location} />
+          <Map 
+            location={location}
+            onCoordinatesChange={handleCoordinatesChange}
+          />
           <div className="mx-auto">
             <div className="items-center justify-center mx-auto text-center">
               <button

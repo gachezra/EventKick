@@ -2,14 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const Map = ({ location }) => {
+const Map = ({ location, onCoordinatesChange }) => {
   const mapContainer = useRef(null);
   const mapInstance = useRef(null);
 
   useEffect(() => {
     if (!mapInstance.current) {
-      mapInstance.current = L.map(mapContainer.current).setView([-1.3667, 36.8333], 13); // Default to Emara Ole Sereni in Nairobi
-
+      mapInstance.current = L.map(mapContainer.current).setView([-1.3667, 36.8333], 10); // Default to Nairobi
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(mapInstance.current);
@@ -21,18 +20,21 @@ const Map = ({ location }) => {
         .then(data => {
           if (data[0]) {
             const { lat, lon } = data[0];
-            mapInstance.current.setView([lat, lon], 15);
+            mapInstance.current.setView([lat, lon], 11);
             L.marker([lat, lon]).addTo(mapInstance.current);
+
+            // Pass the coordinates back to the parent component
+            onCoordinatesChange({ lat, lon });
           }
         })
         .catch(error => console.error('Error geocoding location:', error));
     }
-  }, [location]);
+  }, [location, onCoordinatesChange]);
 
   return (
-    <div 
-      ref={mapContainer} 
-      className="w-[70%] h-48 md:h-60 lg:h-80 mx-auto mb-4" // Adjust height for different screen sizes
+    <div
+      ref={mapContainer}
+      className="w-[70%] h-48 md:h-60 lg:h-80 mx-auto mb-4"
     ></div>
   );
 };
