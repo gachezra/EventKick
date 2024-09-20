@@ -16,12 +16,25 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(getApprovedEventsRoute);
-        setEvents(response.data);
+        const events = response.data;
+    
+        // Get today's date without time (set hours, minutes, seconds to zero)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+    
+        // Filter events that are today or later
+        const filteredEvents = events.filter(event => {
+          const eventDate = new Date(event.date); // Convert event date to Date object
+          return eventDate >= today; // Keep events from today onwards
+        });
+    
+        setEvents(filteredEvents);
       } catch (err) {
         setError(err.message);
         console.error("Error fetching events:", err);
       }
     };
+    
     fetchEvents();
   }, []);
 
