@@ -48,7 +48,7 @@ const EventDetails = () => {
         }
         console.log(response.data)
       
-        setEventLocation([response.data.latitude,response.data.longitude]);
+        setEventLocation(response.data.location);
 
         const reviewsResponse = await axios.get(`${getReviewsRoute}/${id}`);
         if (Array.isArray(reviewsResponse.data.reviews)) {
@@ -280,8 +280,6 @@ const EventDetails = () => {
       console.error("Error editing review:", err);
     }
   };
-
-  console.log(`Event coordinates: ${eventLocation}`)
 
   const googleMapsLink = `https://www.google.com/maps?q=${encodeURIComponent(eventLocation)}`;
 

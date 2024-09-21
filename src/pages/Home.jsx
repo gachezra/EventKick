@@ -94,6 +94,7 @@ const Home = () => {
               <h2 className="text-xl font-bold mb-4 text-center">Create Your Own Event</h2>
               <p className="text-lg text-center mb-6">
                 Have an event to share? Let the world know! Simply sign up, provide the details, and once approved, your event will be featured on our platform.
+                We post for free!
               </p>
               <div className="text-center mt-6">
                 <Link to="/plan" className="text-indigo-400 hover:underline text-lg">
