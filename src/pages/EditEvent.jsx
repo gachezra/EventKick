@@ -50,6 +50,10 @@ const EditEvent = ({ eventid }) => {
         description,
         date: `${date}T${time}`,
         location,
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
       });
       console.log('Event updated:', response.data);
       navigate(`/events/${eventid || id}`);
