@@ -23,6 +23,10 @@ const Home = () => {
         ]);
     
         const currentDate = new Date();
+
+
+        console.log('Popular events: ', popularEventsResponse.data);
+        console.log('Upcoming events', upcomingEventsResponse.data);
     
         // Filter and sort all events by date, removing older events
         const filteredEvents = allEventsResponse.data
@@ -33,17 +37,17 @@ const Home = () => {
         setEvents(filteredEvents.slice(0, 10));
     
         // Assuming you want similar filtering for popular and upcoming events:
-        const filteredPopularEvents = popularEventsResponse.data
-          .filter(event => new Date(event.date) >= currentDate)
-          .sort((a, b) => new Date(a.date) - new Date(b.date));
+        // const filteredPopularEvents = popularEventsResponse.data
+        //   .filter(event => new Date(event.date) >= currentDate)
+        //   .sort((a, b) => new Date(a.date) - new Date(b.date));
     
-        const filteredUpcomingEvents = upcomingEventsResponse.data
-          .filter(event => new Date(event.date) >= currentDate)
-          .sort((a, b) => new Date(a.date) - new Date(b.date));
+        // const filteredUpcomingEvents = upcomingEventsResponse.data
+        //   .filter(event => new Date(event.date) >= currentDate)
+        //   .sort((a, b) => new Date(a.date) - new Date(b.date));
     
         // Update state
-        setPopularEvents(filteredPopularEvents);
-        setUpcomingEvents(filteredUpcomingEvents);
+        setPopularEvents(popularEventsResponse.data);
+        setUpcomingEvents(upcomingEventsResponse.data);
       } catch (err) {
         setError(err.message);
         console.error("Error fetching events:", err);

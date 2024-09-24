@@ -11,7 +11,18 @@ import loader from "../assets/loader.gif";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ForumPreview from "../components/ForumPreview";
-import { eventDetailsRoute, getCommentsRoute, addCommentRoute, deleteCommentRoute, registerEventRoute, getReviewsRoute, deleteReviewRoute, addReviewRoute, editReviewRoute } from '../utils/APIRoutes';
+import {
+  eventDetailsRoute,
+  getCommentsRoute,
+  addCommentRoute,
+  deleteCommentRoute,
+  registerEventRoute,
+  getReviewsRoute,
+  deleteReviewRoute,
+  addReviewRoute,
+  editReviewRoute,
+  incrementOpenedCountRoute
+} from '../utils/APIRoutes';
 import EventsYouMightLike from '../components/EventsYouMightLike';
 import StarRating from '../components/StarRating';
 import PaymentPage from '../components/PaymentPage';
@@ -47,6 +58,8 @@ const EventDetails = () => {
           setComments([]);
         }
         console.log(response.data)
+
+        axios.post(`${incrementOpenedCountRoute}/${id}`)
       
         setEventLocation(response.data.location);
 
