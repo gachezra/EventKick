@@ -35,7 +35,7 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/about" element={<AboutUs/>} />
         <Route path="/forgot-password"  element={<ResetPassword/>} />
-        <Route path="/verify/:token" element={<EmailVerified/>} />
+        <Route path="/verifyemail/:token" element={<EmailVerified/>} />
         <Route path="/reset-password/:token" element={<NewPassword/>} />
         <Route path="/forums/:eventId" element={<ForumPage />} />
         <Route path="/forum/:threadId" element={<ForumDetailsPage/>} />
