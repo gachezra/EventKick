@@ -82,7 +82,7 @@ const Login = () => {
       <Helmet>
         <title>Login</title>
         <meta name="description" content="Login to your account to get tickets and view your history." />
-        <link rel='canonical' href='/login' />
+        <link rel='canonical' href='https://www.eventkick.ke/login' />
       </Helmet>
       <Header />
       <main className="flex items-center justify-center flex-1 px-4 py-8">

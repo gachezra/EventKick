@@ -40,7 +40,7 @@ const NewPassword = () => {
             <Helmet>
                 <title>New Password</title>
                 <meta name='description' content='Set your new password.' />
-                <link rel='canonical' href='/reset-password' />
+                <link rel='canonical' href='https://www.eventkick.ke/reset-password' />
             </Helmet>
             <Header />
             <main className="flex items-center justify-center flex-1 px-4 py-8">

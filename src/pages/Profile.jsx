@@ -128,7 +128,7 @@ const Profile = () => {
       <Helmet>
         <title>Profile</title>
         <meta name='description' content='View your profile along with your tickets, transaction and posted events for event planners.' />
-        <link rel='canonical' href='/profile' />
+        <link rel='canonical' href='https://www.eventkick.ke/profile' />
       </Helmet>
       <Header />
       <div className="container mx-auto flex-grow px-4 py-8">

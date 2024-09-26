@@ -49,7 +49,7 @@ const Events = () => {
       <Helmet>
         <title>Events</title>
         <meta name='description' content='Get to view all the available events on your prefered location.' />
-        <link rel='canonical' href='/events' />
+        <link rel='canonical' href='https://www.eventkick.ke/events' />
       </Helmet>
       <Header />
       <div className="container mx-auto px-4 flex-grow font-s">

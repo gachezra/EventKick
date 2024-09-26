@@ -103,7 +103,7 @@
 //       <Helmet>
 //         <title>Plan Your Event</title>
 //         <meta name='description' content='Post details about your events which will be published after admin review.' />
-//         <link rel='canonical' href='/plan' />
+//         <link rel='canonical' href='https://www.eventkick.ke/plan' />
 //       </Helmet>
 //       <Header />
 //       <div className="container mx-auto flex-grow p-4">
@@ -381,7 +381,7 @@ const Plan = () => {
       <Helmet>
         <title>Plan Your Event</title>
         <meta name='description' content='Post details about your events which will be published after admin review.' />
-        <link rel='canonical' href='/plan' />
+        <link rel='canonical' href='https://www.eventkick.ke/plan' />
       </Helmet>
       <Header />
       <div className="container mx-auto flex-grow p-4">

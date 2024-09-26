@@ -31,7 +31,7 @@ const ResetPassword = () => {
       <Helmet>
         <title>Reset your password</title>
         <meta name='description' content='Reset your password.' />
-        <link rel='canonical' href='/forgot-password' />
+        <link rel='canonical' href='https://www.eventkick.ke/forgot-password' />
       </Helmet>
       <Header />
       <main className="flex items-center justify-center flex-1 px-4 py-8">

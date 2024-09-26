@@ -62,7 +62,7 @@ const Home = () => {
       <Helmet>
         <title>EventKick</title>
         <meta name='description' content="EventKick is Kenya's leading event management platform. Discover, plan, and attend exciting events across Kenya. Join us for unforgettable experiences!" />
-        <link rel='canonical' href='/' />
+        <link rel='canonical' href='https://www.eventkick.ke/' />
         <meta name="keywords" content="events in mombasa, what's in mombasa, what's on Mombasa, what's in Nairobi, what's on Nairobi, Nairobi events, concerts in Mombasa, festivals in Nairobi, Kenya events, sports in Kenya, Mombasa concerts, Nairobi nightlife, cultural events Kenya, things to do in Mombasa, things to do in Nairobi, Kenya festivals, live music Nairobi, Mombasa festivals" />
         <meta property="og:title" content="Top Events in Mombasa and Nairobi, Kenya - Concerts, Festivals & More" />
       </Helmet>

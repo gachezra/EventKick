@@ -22,7 +22,7 @@ const AboutUs = () => {
         <Helmet>
             <title>About Us</title>
             <meta name='description' content='EventKick is your go-to platform for discovering, planning and experiencing amazing events. Our mission is to make event planning and discovery seamless and enjoyable for everyone.'/>
-            <link rel='canonical' href='/about' />
+            <link rel='canonical' href='https://www.eventkick.ke/about' />
         </Helmet>
         <Header />
         <div className="max-w-4xl mx-auto">

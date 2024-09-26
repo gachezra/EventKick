@@ -88,7 +88,7 @@ const SetAvatar = () => {
       <Helmet>
         <title>SetAvatar</title>
         <meta name="description" content="Set your profile picture/avatar." />
-        <link rel='canonical' href='/setAvatar' />
+        <link rel='canonical' href='https://www.eventkick.ke/setAvatar' />
       </Helmet>
       {isLoading ? (
         <Container>

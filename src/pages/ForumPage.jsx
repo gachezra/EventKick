@@ -53,7 +53,7 @@ const ForumPage = () => {
         <Helmet>
           <title>Forum - {event.title}</title>
           <meta name='description' content='Share and participate on the most active forums in the event industry.' />
-          <link rel='canonical' href='/forums' />
+          <link rel='canonical' href='https://www.eventkick.ke/forums' />
         </Helmet>
         <Header/>
         <div className="container mx-auto p-4">

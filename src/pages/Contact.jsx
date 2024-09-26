@@ -20,7 +20,7 @@ const Contact = () => {
       <Helmet>
         <title>Contact Us</title>
         <meta name='description' content="We'd love to hear from you! Whether you have questions about our events, how to post your event, feedback, or just want to say hello, feel free to reach out to us."/>
-        <link rel='canonical' href='/contact' />
+        <link rel='canonical' href='https://www.eventkick.ke/contact' />
       </Helmet>
       <Header />
       <div className="container mx-auto flex-grow p-4">

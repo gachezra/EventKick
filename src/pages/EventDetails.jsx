@@ -315,7 +315,7 @@ const EventDetails = () => {
       <Helmet>
         <title>{event.title}</title>
         <meta name='description' content={event.description}/>
-        <link rel='canonical' href={`/events/${id}`} />
+        <link rel='canonical' href={`https://www.eventkick.ke/events/${id}`} />
       </Helmet>
       <Header />
       <div className="container mx-auto p-4 flex-grow md:mx-auto font-xs">

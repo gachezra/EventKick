@@ -88,7 +88,7 @@ const Register = () => {
       <Helmet>
         <title>Register</title>
         <meta name="description" content="Register for an EventKick account." />
-        <link rel='canonical' href='/register' />
+        <link rel='canonical' href='https://www.eventkick.ke/register' />
       </Helmet>
       <Header />
       <main className="flex items-center justify-center flex-1 px-4 py-8">

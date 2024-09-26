@@ -68,7 +68,7 @@ const EditEvent = ({ eventid }) => {
       <Helmet>
         <title>Edit your event</title>
         <meta name='description' content='Edit your event.' />
-        <link rel='canonical' href='/edit-event' />
+        <link rel='canonical' href='https://www.eventkick.ke/edit-event' />
       </Helmet>
       <Header />
       <div className="container mx-auto flex-grow p-4">

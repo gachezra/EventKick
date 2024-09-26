@@ -37,7 +37,7 @@ const EmailVerified = () => {
       <Helmet>
         <title>Verify Email</title>
         <meta name='decsription' content='Verify your email.' />
-        <link rel='canonical' href='/verify-email' />
+        <link rel='canonical' href='https://www.eventkick.ke/verify' />
       </Helmet>
       <Header />
       <main className="flex items-center justify-center flex-1 px-4 py-8">

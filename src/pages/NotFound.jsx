@@ -9,7 +9,7 @@ const NotFound = () => {
       <Helmet>
         <title>NotFound</title>
         <meta name='description' content='Page not found' />
-        <link rel='canonical' href='/*' />
+        <link rel='canonical' href='https://www.eventkick.ke/not-found*' />
       </Helmet>
       <Header />
       <div className="container mx-auto flex-grow flex flex-col items-center justify-center">
