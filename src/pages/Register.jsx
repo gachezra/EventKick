@@ -8,6 +8,7 @@ import { registerRoute } from "../utils/APIRoutes";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
+import { MdEmail } from "react-icons/md";
 
 const Register = () => {
   const toastOptions = {
@@ -23,6 +24,8 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const [showEmailAlert, setShowEmailAlert] = useState(false);
+  const [emailMessage, setEmailMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,17 +39,22 @@ const Register = () => {
 
     if (handleValidation()) {
       const { email, username, password } = values;
-      const { data } = await axios.post(registerRoute, {
-        username,
-        email,
-        password,
-      });
+      try {
+        const { data } = await axios.post(registerRoute, {
+          username,
+          email,
+          password,
+        });
 
-      if (data.status === false) {
-        toast.error(data.msg, toastOptions);
-      }
-      if (data.status === true) {
-        navigate("/login");
+        if (data.status === false) {
+          toast.error(data.msg, toastOptions);
+        }
+        if (data.status === true) {
+          setEmailMessage(data.msg || "Please check your email to verify your account.");
+          setShowEmailAlert(true);
+        }
+      } catch (error) {
+        toast.error("An error occurred. Please try again.", toastOptions);
       }
     }
   };
@@ -83,6 +91,17 @@ const Register = () => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
+  const EmailAlert = () => (
+    <div className="mt-4 text-center">
+      <h3 className="text-xl font-medium text-white mb-2">Check your email</h3>
+      <p className="text-gray-300 mb-4">{emailMessage}</p>
+      <MdEmail className="text-indigo-500 mx-auto text-6xl mb-4" />
+      <p className="text-sm text-gray-400">
+        Check your spam folder if not in inbox
+      </p>
+    </div>
+  );
+
   return (
     <div className="flex flex-col min-h-screen bg-[#131324] text-white">
       <Helmet>
@@ -93,66 +112,70 @@ const Register = () => {
       <Header />
       <main className="flex items-center justify-center flex-1 px-4 py-8">
         <div className="w-full max-w-md px-4 py-8 mx-4 bg-[#1a1a2e] rounded-lg shadow-xl">
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center space-x-2">
             <img src={Logo} alt="logo" className="h-12" />
             <h1 className="text-3xl font-bold text-white">Register</h1>
           </div>
-          <form className="mt-6 px-6" onSubmit={(event) => handleSubmit(event)}>
-            <input
-              type="text"
-              placeholder="Username"
-              name="username"
-              onChange={(e) => handleChange(e)}
-              min="3"
-              className="w-full p-3 mt-2 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={(e) => handleChange(e)}
-              className="w-full p-3 mt-4 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={(e) => handleChange(e)}
-              className="w-full p-3 mt-4 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              onChange={(e) => handleChange(e)}
-              className="w-full p-3 mt-4 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
-            />
-            <div className="flex justify-end mt-2">
-              <Link
-                to="/forgot-password"
-                className="text-sm text-indigo-400 hover:text-indigo-500"
-              >
-                Forgot Password?
-              </Link>
-            </div>
-            <div className="justify-center text-center items-center mx-auto">
-              <button
-                type="submit"
-                className="rounded-full border-2 justify-center border-indigo-600 px-6 pb-[6px] pt-2 mt-2 font-medium leading-normal text-indigo-600 transition duration-150 ease-in-out hover:border-indigo-500 hover:bg-indigo-100 hover:bg-opacity-10 hover:text-indigo-500 focus:border-indigo-500 focus:text-indigo-500 focus:outline-none focus:ring-0 active:border-indigo-700 active:text-indigo-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-              >
-                Register
-              </button>
-            </div>
-            <span className="block mt-6 text-sm text-center text-gray-300">
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className="font-bold text-indigo-500 hover:text-indigo-600"
-              >
-                Login
-              </Link>
-            </span>
-          </form>
+          {showEmailAlert ? (
+            <EmailAlert />
+          ) : (
+            <form className="mt-6 px-6" onSubmit={(event) => handleSubmit(event)}>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                onChange={(e) => handleChange(e)}
+                min="3"
+                className="w-full p-3 mt-2 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                onChange={(e) => handleChange(e)}
+                className="w-full p-3 mt-4 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={(e) => handleChange(e)}
+                className="w-full p-3 mt-4 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
+              />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                onChange={(e) => handleChange(e)}
+                className="w-full p-3 mt-4 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:border-gray-400"
+              />
+              <div className="flex justify-end mt-2">
+                <Link
+                  to="/forgot-password"
+                  className="text-sm text-indigo-400 hover:text-indigo-500"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+              <div className="justify-center text-center items-center mx-auto">
+                <button
+                  type="submit"
+                  className="rounded-full border-2 justify-center border-indigo-600 px-6 pb-[6px] pt-2 mt-2 font-medium leading-normal text-indigo-600 transition duration-150 ease-in-out hover:border-indigo-500 hover:bg-indigo-100 hover:bg-opacity-10 hover:text-indigo-500 focus:border-indigo-500 focus:text-indigo-500 focus:outline-none focus:ring-0 active:border-indigo-700 active:text-indigo-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                >
+                  Register
+                </button>
+              </div>
+              <span className="block mt-6 text-sm text-center text-gray-300">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="font-bold text-indigo-500 hover:text-indigo-600"
+                >
+                  Login
+                </Link>
+              </span>
+            </form>
+          )}
         </div>
       </main>
       <ToastContainer />
