@@ -3,16 +3,35 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
+import { sendMessageRoute } from '../utils/APIRoutes';
 
 const Contact = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [notification, setNotification] = useState({ type: '', message: '' });
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here
+    try {
+      const res = await axios.post(sendMessageRoute, formData);
+      setNotification({ type: 'success', message: 'Message sent successfully!' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setNotification({ 
+        type: 'error', 
+        message: error.response?.data?.msg || 'An error occurred while sending the message.' 
+      });
+    }
   };
 
   return (
@@ -31,39 +50,29 @@ const Contact = () => {
         <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
         <div className="flex flex-col md:flex-row md:space-x-4">
           <form onSubmit={handleSubmit} className="bg-[#1e1e36] p-6 rounded-md shadow-md md:w-1/2">
-            {error && <div className="text-red-500 mb-4">{error}</div>}
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full p-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-              <textarea
-                id="message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="w-full p-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
-                required
-              />
-            </div>
+            {notification.message && (
+              <div className={`mb-4 p-2 rounded ${
+                notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'
+              }`}>
+                {notification.message}
+              </div>
+            )}
+            {['name', 'email', 'subject', 'message'].map((field) => (
+              <div key={field} className="mb-4">
+                <label htmlFor={field} className="block text-sm font-medium mb-2 capitalize">
+                  {field}
+                </label>
+                <input
+                  type={field === 'email' ? 'email' : 'text'}
+                  id={field}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
+                  required
+                />
+              </div>
+            ))}
             <div className="justify-center text-center items-center mx-auto">
               <button
                 type="submit"
