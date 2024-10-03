@@ -22,7 +22,11 @@ const EventCard = ({ event, isProfilePage, onEdit, onDelete }) => {
             <p className="text-sm text-gray-400 mb-2 line-clamp-2">{event.description}</p>
             <div className="mb-2">
               <p className="text-indigo-200 p-2 rounded">
-                <strong>Date & Time:</strong> {new Date(event.date).toLocaleString()}
+              <strong>Date & Time:</strong> {new Intl.DateTimeFormat('en-US', { 
+                dateStyle: 'medium', 
+                timeStyle: 'short', 
+                timeZone: 'UTC' 
+              }).format(new Date(event.date))}
               </p>
             </div>
             <div className="mb-2">
