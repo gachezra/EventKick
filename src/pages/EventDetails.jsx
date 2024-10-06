@@ -354,7 +354,12 @@ const EventDetails = () => {
               <p className="mb-4">{event.description}</p>
               <div className="mb-4">
                 <strong>Date & Time: </strong>
-                <span>{new Date(event.date).toLocaleString()}</span>
+                <span>{new Intl.DateTimeFormat('en-US', { 
+                    dateStyle: 'medium', 
+                    timeStyle: 'short', 
+                    timeZone: 'UTC' 
+                  }).format(new Date(event.date))}
+                </span>
               </div>
 
               <div className="mb-2">
