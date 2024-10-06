@@ -373,6 +373,7 @@ const EventDetails = () => {
                 <span>{event.isPaid ? `Ksh.${event.ticketPrice}` : 'Free'}</span>
               </div>
               {event.isPaid && (
+                <>
                 <input
                   type="number"
                   className="w-full p-3 mb-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
@@ -380,16 +381,17 @@ const EventDetails = () => {
                   onChange={(e) => setNumOfTickets(e.target.value)}
                   min="1"
                 />
+                <button
+                  onClick={handleRegister}
+                  disabled={event.registeredUsers.includes(currentUser?._id)}
+                  className="rounded-full border-2 border-indigo-600 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-indigo-600 transition duration-150 ease-in-out hover:border-indigo-500 hover:bg-indigo-100 hover:bg-opacity-10 hover:text-indigo-500 focus:border-indigo-500 focus:text-indigo-500 focus:outline-none focus:ring-0 active:border-indigo-700 active:text-indigo-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                >
+                  {event.registeredUsers.includes(currentUser?._id)
+                    ? 'Already Registered'
+                    : 'Get Ticket'}
+                </button>
+                </>
               )}
-              <button
-                onClick={handleRegister}
-                disabled={event.registeredUsers.includes(currentUser?._id)}
-                className="rounded-full border-2 border-indigo-600 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-indigo-600 transition duration-150 ease-in-out hover:border-indigo-500 hover:bg-indigo-100 hover:bg-opacity-10 hover:text-indigo-500 focus:border-indigo-500 focus:text-indigo-500 focus:outline-none focus:ring-0 active:border-indigo-700 active:text-indigo-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-              >
-                {event.registeredUsers.includes(currentUser?._id)
-                  ? 'Already Registered'
-                  : 'Get Ticket'}
-              </button>
             </div>
           </div>
         </div>
