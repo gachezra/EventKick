@@ -77,6 +77,37 @@ const EventDetails = () => {
     fetchEventDetails();
   }, [id]);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": event.title,
+    "description": event.description,
+    "startDate": event.date,
+    "location": {
+      "@type": "Place",
+      "name": event.location,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mombasa",
+        "addressRegion": "Coast",
+        "addressCountry": "Kenya"
+      }
+    },
+    "image": event.image,
+    "offers": {
+      "@type": "Offer",
+      "price": event.ticketPrice,
+      "priceCurrency": "KES",
+      "availability": "https://schema.org/InStock",
+      "url": `https://www.eventkick.ke/events/${event._id}`
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "EventKick",
+      "url": "https://www.eventkick.ke"
+    }
+  };
+
   const handleRegister = async () => {
     if (!currentUser) {
       navigate('/login');
@@ -316,6 +347,9 @@ const EventDetails = () => {
         <title>{event.title}</title>
         <meta name='description' content={event.description}/>
         <link rel='canonical' href={`https://www.eventkick.ke/events/${id}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
       </Helmet>
       <Header />
       <div className="container mx-auto p-4 flex-grow md:mx-auto font-xs">

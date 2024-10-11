@@ -14,6 +14,26 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const date = new Date();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Events In Mombasa",
+    "description": "Need a place to go tonight in Mombasa? We got you.",
+    "startDate": date,
+    "location": {
+      "@type": "Place",
+      "name": "Mombasa Beach",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mombasa",
+        "addressRegion": "Coast",
+        "addressCountry": "Kenya"
+      }
+    },
+  };
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -98,6 +118,9 @@ const Home = () => {
         <link rel='canonical' href='https://www.eventkick.ke/' />
         <meta name="keywords" content={`events today, ${new Date().toDateString()} events, Nairobi events, Mombasa events, Kenya concerts, festivals today`} />
         <meta property="og:title" content={`Top Events in Mombasa Today - ${new Date().toDateString()}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
       </Helmet>
       <Header />
       <div className="container mx-auto px-4 flex-grow">

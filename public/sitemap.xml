@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://eventkick.ke/</loc>
+    <loc>https://www.eventkick.ke/</loc>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://eventkick.ke/register</loc>
+    <loc>https://www.eventkick.ke/register</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/login</loc>
+    <loc>https://www.eventkick.ke/login</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/setAvatar</loc>
+    <loc>https://www.eventkick.ke/setAvatar</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/events</loc>
+    <loc>https://www.eventkick.ke/events</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/plan</loc>
+    <loc>https://www.eventkick.ke/plan</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/contact</loc>
+    <loc>https://www.eventkick.ke/contact</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/profile</loc>
+    <loc>https://www.eventkick.ke/profile</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/admin</loc>
+    <loc>https://www.eventkick.ke/admin</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/about</loc>
+    <loc>https://www.eventkick.ke/about</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/forgot-password</loc>
+    <loc>https://www.eventkick.ke/forgot-password</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/verify-email/{token}</loc>
+    <loc>https://www.eventkick.ke/verify-email/{token}</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/reset-password/{token}</loc>
+    <loc>https://www.eventkick.ke/reset-password/{token}</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/forums/{eventId}</loc>
+    <loc>https://www.eventkick.ke/forums/{eventId}</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/forum/{threadId}</loc>
+    <loc>https://www.eventkick.ke/forum/{threadId}</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/chat</loc>
+    <loc>https://www.eventkick.ke/chat</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/events/{id}</loc>
+    <loc>https://www.eventkick.ke/events/{id}</loc>
   </url>
   <url>
-    <loc>https://eventkick.ke/edit-event/{id}</loc>
+    <loc>https://www.eventkick.ke/edit-event/{id}</loc>
   </url>
 </urlset>
