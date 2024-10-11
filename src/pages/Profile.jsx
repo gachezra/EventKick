@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Placeholder from "../assets/placeholder-image.jpg";
-import { getUserEventsRoute, deleteEventRoute, getUserRegisteredEventsRoute, getUserDetailsRoute, updateUserRoute } from "../utils/APIRoutes";
+import { getUserEventsRoute, deleteEventRoute, getApprovedEventsRoute, getUserDetailsRoute, updateUserRoute } from "../utils/APIRoutes";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { HiOutlinePencilAlt } from "react-icons/hi";
@@ -95,11 +95,20 @@ const Profile = () => {
 
   const fetchUserRegisteredEvents = async (userId) => {
     try {
-      const response = await axios.get(`${getUserRegisteredEventsRoute}/${userId}/registered`);
-      setRegisteredEvents(response.data);
+      const response = await axios.get(getApprovedEventsRoute, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      const allEvents = response.data;
+  
+      const filteredEvents = allEvents.filter(event =>
+          event.registeredUsers && event.registeredUsers.includes(userId)
+      );
+
+      console.log(filteredEvents)
+  
+      setRegisteredEvents(filteredEvents);
     } catch (err) {
       console.error("Error fetching registered events:", err);
-      setError("Failed to fetch registered events. Please try again later.");
     }
   };
 
