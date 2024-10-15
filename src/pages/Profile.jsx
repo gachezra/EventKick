@@ -99,9 +99,13 @@ const Profile = () => {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const allEvents = response.data;
+
+      console.log(allEvents);
   
       const filteredEvents = allEvents.filter(event =>
-          event.registeredUsers && event.registeredUsers.includes(userId)
+        event.registeredUsers && event.registeredUsers.some(registeredUser =>
+          registeredUser.user.toString() === userId
+        )
       );
 
       console.log(filteredEvents)
