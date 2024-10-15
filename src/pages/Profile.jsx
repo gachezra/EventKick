@@ -19,7 +19,7 @@ const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [events, setEvents] = useState([]);
-  const [ editUser, setEditUser] = useState(true);
+  const [editUser, setEditUser] = useState(true);
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
@@ -103,11 +103,12 @@ const Profile = () => {
       console.log(allEvents);
   
       const filteredEvents = allEvents.filter(event =>
-        event.registeredUsers && event.registeredUsers.some(registeredUser =>
-          registeredUser.user.toString() === userId
+        event.registeredUsers &&
+        event.registeredUsers.some(registeredUser => 
+          registeredUser.user && registeredUser.user.toString() === userId
         )
       );
-
+      
       console.log(filteredEvents)
   
       setRegisteredEvents(filteredEvents);
