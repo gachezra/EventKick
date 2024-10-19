@@ -45,7 +45,7 @@ const Login = () => {
       if (data.status === true) {
         localStorage.setItem("token", data.token);
         if (data.user.avatarImage){
-          localStorage.setItem('iaAvatarImageSet', true)
+          localStorage.setItem('isAvatarImageSet', true)
           localStorage.setItem(
             process.env.REACT_APP_LOCALHOST_KEY,
             JSON.stringify(data.user)

@@ -25,6 +25,7 @@ import {
 } from '../utils/APIRoutes';
 import EventsYouMightLike from '../components/EventsYouMightLike';
 import StarRating from '../components/StarRating';
+import EventShare from '../components/EventShare';
 import PaymentPage from '../components/PaymentPage';
 import { Helmet } from 'react-helmet-async';
 
@@ -431,7 +432,9 @@ const EventDetails = () => {
                 </button>
                 </>
               )}
-            </div>
+
+              <EventShare event={event} />
+             </div>
           </div>
         </div>
 

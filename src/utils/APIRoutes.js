@@ -23,6 +23,7 @@ export const deleteEventRoute = `${host}/api/events`;
 export const popularEventsRoute = `${host}/api/events/popular`;
 export const upcomingEventsRoute = `${host}/api/events/upcoming`;
 export const incrementOpenedCountRoute = `${host}/api/events/incrementOpenedCount`;
+export const shareTrackingRoute = (eventId) => `${host}/api/events/share-track/${eventId}`
 
 export const getCommentsRoute = `${host}/api/comments/event`;
 export const addCommentRoute = `${host}/api/comments/add`;
