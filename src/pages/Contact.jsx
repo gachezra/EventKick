@@ -24,7 +24,7 @@ const Contact = () => {
     e.preventDefault();
     try {
       const res = await axios.post(sendMessageRoute, formData);
-      setNotification({ type: 'success', message: 'Message sent successfully!' });
+      setNotification({ type: 'success', message: `${res.data.msg}` });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       setNotification({ 

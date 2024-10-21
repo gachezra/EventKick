@@ -104,15 +104,15 @@ const AdminDashboard = () => {
   };
 
   const renderEventList = (events, showActions = false) => (
-    <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {events.map((event) => (
         <div key={event._id} className="p-4 bg-[#2a2a4e] rounded-md">
           {event.image && (
             <img
               src={event.image}
               alt={event.title}
-              className="w-full h-auto md:w-auto md:h-[600px] mb-6 rounded-md p-2 md:mx-6 shadow-lg"
-              onError={(e) => e.target.src = placeholderImage}
+              className="w-full h-auto md:w-auto md:h-[600px] mb-6 rounded-md p-2 shadow-lg"
+              onError={(e) => (e.target.src = placeholderImage)}
             />
           )}
           <h3 className="text-xl font-bold">{event.title}</h3>
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
           {showActions && (
             <div className="mt-2 space-x-2">
               {event.status !== 'approved' && (
-                <button 
+                <button
                   onClick={() => handleApprove(event._id)}
                   className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
                 >
@@ -131,14 +131,14 @@ const AdminDashboard = () => {
                 </button>
               )}
               {event.status !== 'pending' && (
-                <button 
+                <button
                   onClick={() => handleDisapprove(event._id)}
                   className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
                 >
                   Disapprove
                 </button>
               )}
-              <button 
+              <button
                 onClick={() => handleDelete(event._id)}
                 className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
               >
