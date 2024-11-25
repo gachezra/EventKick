@@ -7,7 +7,7 @@
  import { createEventRoute } from "../utils/APIRoutes"
  import { Helmet } from 'react-helmet-async';
 
- const Plan = () => {
+ const AdmPst = () => {
    const [title, setTitle] = useState('');
    const [description, setDescription] = useState('');
    const [date, setDate] = useState('');
@@ -310,4 +310,4 @@
    );
  };
 
-export default Plan;
+export default AdmPst;
