@@ -25,7 +25,6 @@
    const [fileName, setFileName] = useState('Choose an image');
   
   const currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY));
-  const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
   useEffect(() => {
