@@ -4,7 +4,7 @@
  import Header from '../components/Header';
  import Footer from '../components/Footer';
  import Map from '../components/Map';
- import { createEventRoute } from "../utils/APIRoutes"
+ import { createEventRoute, getUserDetailsRoute } from "../utils/APIRoutes"
  import { Helmet } from 'react-helmet-async';
 
  const AdmPst = () => {
