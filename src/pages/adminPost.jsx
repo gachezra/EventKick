@@ -44,9 +44,6 @@
 
           if (user.role !== 'admin') {
             navigate('/');
-          } else {
-             Only fetch events if the user is an admin
-            fetchEvents();
           }
         }
       } catch (error) {
