@@ -11,6 +11,7 @@ import SetAvatar from "./pages/SetAvatar";
 import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
+import AdmPst from "./pages/adminPost";
 import EditEvent from "./pages/EditEvent";
 import NotFound from "./pages/NotFound";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/contact" element={<Contact/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admpst" element={<AdmPst/>}/>
         <Route path="/about" element={<AboutUs/>} />
         <Route path="/forgot-password"  element={<ResetPassword/>} />
         <Route path="/verify/:token" element={<EmailVerified/>} />
