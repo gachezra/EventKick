@@ -523,10 +523,10 @@ const Plan = () => {
               required
             />
           </div>
-          <Map 
+          {/* <Map 
             location={location}
             onCoordinatesChange={handleCoordinatesChange}
-          />
+          /> */}
           <div className="mx-auto">
             <div className="items-center justify-center mx-auto text-center">
               <button
