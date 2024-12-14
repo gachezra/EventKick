@@ -138,37 +138,25 @@
        </Helmet>
        <Header />
        <div className="container mx-auto flex-grow p-4">
-         <h1 className="text-3xl font-bold mb-4">Plan Your Event</h1>
-         <p className="mb-4">
-           Follow the instructions below to publish your event:
-         </p>
-         <ol className="list-decimal list-inside mb-4">
-           <li>Enter the title of your event.</li>
-           <li>Provide a detailed description of the event.</li>
-           <li>Select the date and time for the event.</li>
-           <li>Enter the location where the event will be held, precise locations help EventKickers find it (...Location, County).</li>
-           <li>Upload an image for your event (optional).</li>
-           <li>Click the "Submit" button to publish your event.</li>
-         </ol>
          <form onSubmit={handleSubmit} className="bg-[#1e1e36] p-6 rounded-md shadow-md">
            {error && <div className="text-red-500 mb-4">{error}</div>}
-           <div className="mb-4">
-             <label htmlFor="title" className="block text-sm font-medium mb-2">Event Title</label>
-             <input
-               type="text"
-               id="title"
-               value={title}
-               onChange={(e) => setTitle(e.target.value)}
-               className="w-full p-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
-               required
-             />
-           </div>
            <div className="mb-4">
              <label htmlFor="description" className="block text-sm font-medium mb-2">Description</label>
              <textarea
                id="description"
                value={description}
                onChange={(e) => setDescription(e.target.value)}
+               className="w-full p-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
+               required
+             />
+           </div>
+          <div className="mb-4">
+             <label htmlFor="title" className="block text-sm font-medium mb-2">Event Title</label>
+             <input
+               type="text"
+               id="title"
+               value={title}
+               onChange={(e) => setTitle(e.target.value)}
                className="w-full p-3 bg-transparent border-b border-gray-300 focus:outline-none focus:border-indigo-600"
                required
              />
