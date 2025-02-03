@@ -54,7 +54,7 @@ const EventsDashboard = () => {
       // Sort events by date (ascending)
       const sortedEvents = res.sort((b, a) => new Date(a.date) - new Date(b.date));
       // filter events
-      const filteredEvents = sortedEvents.filter(event => event.user === 1);
+      const filteredEvents = sortedEvents.filter(event => event.user === '000000000000000000000001');
       setEvents(filteredEvents);
     } catch (error) {
       console.error('Error fetching events:', error);
