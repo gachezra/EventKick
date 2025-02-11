@@ -300,10 +300,14 @@ const EventsDashboard = () => {
       if (!selectedEvent || !selectedEvent._id) {
         throw new Error("No event selected for update");
       }
-      await axios.put(`${updateEventRoute}/${selectedEvent._id}`, updatedEventData, {
+      const response = await axios.put(`${updateEventRoute}/${selectedEvent._id}`, updatedEventData, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      fetchEvents();
+      
+      setEvents(prevEvents => prevEvents.map(event => 
+        event._id === selectedEvent._id ? { ...event, ...updatedEventData } : event
+      ));
+      
       setIsEditing(false);
       setSelectedEvent(null);
     } catch (error) {
@@ -311,20 +315,23 @@ const EventsDashboard = () => {
       toast(error.message || "Error saving event");
     }
   };
-
+  
   const handleDelete = async (eventId) => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       try {
         await axios.delete(`${deleteEventRoute}/${eventId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        fetchEvents();
+        
+        setEvents(prevEvents => prevEvents.filter(event => event._id !== eventId));
+        
       } catch (error) {
         console.error('Error deleting event:', error);
         toast(error.message || "Error deleting event");
       }
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-[#131324] text-gray-100 p-4 md:p-8">
