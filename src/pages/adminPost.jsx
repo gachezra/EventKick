@@ -71,6 +71,7 @@ const EventsDashboard = () => {
   // EventEditor Component
   // ----------------------------
   const EventEditor = ({ event, onSave, onCancel }) => {
+    console.log('Event being edited:', event);
     const [editorTitle, setEditorTitle] = useState(event.title);
     const [editorDescription, setEditorDescription] = useState(event.description);
     const [editorDate, setEditorDate] = useState(event.date.split('T')[0]);
