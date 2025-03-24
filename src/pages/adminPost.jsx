@@ -296,6 +296,7 @@ const EventsDashboard = () => {
   // ----------------------------
   const handleSave = async (updatedEventData) => {
     try {
+      console.log('Event data: ', updatedEventData);
       if (!selectedEvent || !selectedEvent._id) {
         throw new Error("No event selected for update");
       }
