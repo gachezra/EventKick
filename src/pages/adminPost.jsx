@@ -53,7 +53,7 @@ const EventsDashboard = () => {
       const res = response.data;
       // Sort events by date (ascending)
       const sortedEvents = res.sort((b, a) => new Date(a.date) - new Date(b.date));
-      // filter events
+      // Filter events
       const filteredEvents = sortedEvents.filter(event => event.user === '000000000000000000000001');
       setEvents(filteredEvents);
     } catch (error) {
@@ -71,7 +71,6 @@ const EventsDashboard = () => {
   // EventEditor Component
   // ----------------------------
   const EventEditor = ({ event, onSave, onCancel }) => {
-    // Create local states for the fields (initialized with the event data)
     const [editorTitle, setEditorTitle] = useState(event.title);
     const [editorDescription, setEditorDescription] = useState(event.description);
     const [editorDate, setEditorDate] = useState(event.date.split('T')[0]);
@@ -97,17 +96,17 @@ const EventsDashboard = () => {
         description: editorDescription,
         date: `${editorDate}T${editorTime}`,
         location: editorLocation,
-        // Include other fields as needed (for example, image data if you plan to handle that)
+        // Optionally include image data here if needed
       };
       console.log('Event data to update:', updatedEventData);
       onSave(updatedEventData);
     };
 
     return (
-      <form onSubmit={handleSubmit} className="space-y-6 bg-[#1e1e36] p-6 rounded-xl">
+      <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto space-y-6 bg-[#1e1e36] p-6 rounded-xl">
         {/* Image Upload Section */}
         <div className="relative group">
-          <div className={`h-48 md:h-64 rounded-xl overflow-hidden bg-[#131324] flex items-center justify-center border-2 border-dashed border-gray-600 ${imagePreview ? 'border-none' : ''}`}>
+          <div className={`w-full h-80 md:h-96 rounded-xl overflow-hidden bg-[#131324] flex items-center justify-center border-2 border-dashed border-gray-600 ${imagePreview ? 'border-none' : ''}`}>
             {imagePreview ? (
               <img src={imagePreview} alt="Event preview" className="w-full h-full object-cover" />
             ) : (
@@ -183,17 +182,17 @@ const EventsDashboard = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <button
             type="submit"
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200"
+            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200"
           >
             Save Event
           </button>
           <button
             type="button"
             onClick={onCancel}
-            className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200"
+            className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 rounded-lg transition duration-200"
           >
             Cancel
           </button>
@@ -256,7 +255,7 @@ const EventsDashboard = () => {
               </div>
             )}
           </div>
-          <div className="mt-4 flex space-x-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             <button
               onClick={() => onEdit(event)}
               className="flex items-center space-x-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition duration-200"
@@ -300,7 +299,7 @@ const EventsDashboard = () => {
       if (!selectedEvent || !selectedEvent._id) {
         throw new Error("No event selected for update");
       }
-      const response = await axios.put(`${updateEventRoute}/${selectedEvent._id}`, updatedEventData, {
+      await axios.put(`${updateEventRoute}/${selectedEvent._id}`, updatedEventData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -331,7 +330,6 @@ const EventsDashboard = () => {
       }
     }
   };
-  
 
   return (
     <div className="min-h-screen bg-[#131324] text-gray-100 p-4 md:p-8">
@@ -353,7 +351,7 @@ const EventsDashboard = () => {
             }}
           />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map(event => (
               <EventCard
                 key={event._id}
