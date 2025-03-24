@@ -106,7 +106,7 @@ const EventsDashboard = () => {
       <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto space-y-6 bg-[#1e1e36] p-6 rounded-xl">
         {/* Image Upload Section */}
         <div className="relative group">
-          <div className={`w-full h-80 md:h-96 rounded-xl overflow-hidden bg-[#131324] flex items-center justify-center border-2 border-dashed border-gray-600 ${imagePreview ? 'border-none' : ''}`}>
+          <div className={`w-full h-100 md:h-150 rounded-xl overflow-hidden bg-[#131324] flex items-center justify-center border-2 border-dashed border-gray-600 ${imagePreview ? 'border-none' : ''}`}>
             {imagePreview ? (
               <img src={imagePreview} alt="Event preview" className="w-full h-full object-cover" />
             ) : (
