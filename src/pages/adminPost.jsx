@@ -51,9 +51,9 @@ const EventsDashboard = () => {
       setLoading(true);
       const response = await axios.get(allEventsRoute);
       const res = response.data;
-      // Sort events by date (ascending)
+      // Sort events by date (descending)
       const sortedEvents = res.sort((b, a) => new Date(a.date) - new Date(b.date));
-      // Filter events
+      // Filter events (if needed, e.g., specific user)
       const filteredEvents = sortedEvents.filter(event => event.user === '000000000000000000000001');
       setEvents(filteredEvents);
     } catch (error) {
@@ -92,11 +92,13 @@ const EventsDashboard = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
+      // Include status so that the event is approved after editing
       const updatedEventData = {
         title: editorTitle,
         description: editorDescription,
         date: `${editorDate}T${editorTime}`,
         location: editorLocation,
+        status: 'approved'
         // Optionally include image data here if needed
       };
       console.log('Event data to update:', updatedEventData);
@@ -323,15 +325,17 @@ const EventsDashboard = () => {
         await axios.delete(`${deleteEventRoute}/${eventId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        
         setEvents(prevEvents => prevEvents.filter(event => event._id !== eventId));
-        
       } catch (error) {
         console.error('Error deleting event:', error);
         toast(error.message || "Error deleting event");
       }
     }
   };
+
+  // Separate events by status
+  const pendingEvents = events.filter(event => event.status !== 'approved');
+  const approvedEvents = events.filter(event => event.status === 'approved');
 
   return (
     <div className="min-h-screen bg-[#131324] text-gray-100 p-4 md:p-8">
@@ -353,19 +357,44 @@ const EventsDashboard = () => {
             }}
           />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {events.map(event => (
-              <EventCard
-                key={event._id}
-                event={event}
-                onEdit={(event) => {
-                  setSelectedEvent(event);
-                  setIsEditing(true);
-                }}
-                onDelete={handleDelete}
-              />
-            ))}
-          </div>
+          <>
+            {pendingEvents.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4">Pending Events</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {pendingEvents.map(event => (
+                    <EventCard
+                      key={event._id}
+                      event={event}
+                      onEdit={(event) => {
+                        setSelectedEvent(event);
+                        setIsEditing(true);
+                      }}
+                      onDelete={handleDelete}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+            {approvedEvents.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Approved Events</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {approvedEvents.map(event => (
+                    <EventCard
+                      key={event._id}
+                      event={event}
+                      onEdit={(event) => {
+                        setSelectedEvent(event);
+                        setIsEditing(true);
+                      }}
+                      onDelete={handleDelete}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
       <ToastContainer />
